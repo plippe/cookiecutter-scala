@@ -1,4 +1,0 @@
-language: scala
-
-notifications:
-  email: false

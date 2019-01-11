@@ -1,6 +1,6 @@
 {
   "app_name": "hello-world",
-  "sbt_version": "0.13.11",
-  "scala_version": "2.10.4",
+  "sbt_version": "1.2.8",
+  "scala_version": "2.12.8",
   "package_name": "com.github.xxx"
 }

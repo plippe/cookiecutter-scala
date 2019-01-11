@@ -1,23 +1,20 @@
 package {{cookiecutter.package_name}}
 
-import collection.mutable.Stack
-import org.scalatest._
+import org.scalacheck.Properties
+import org.scalacheck.Prop.forAll
 
-class MainSpec extends FlatSpec with Matchers {
+object StringSpecification extends Properties("String") {
 
-  "A Stack" should "pop values in last-in-first-out order" in {
-    val stack = new Stack[Int]
-    stack.push(1)
-    stack.push(2)
-    stack.pop() should be(2)
-    stack.pop() should be(1)
+  property("startsWith") = forAll { (a: String, b: String) =>
+    (a+b).startsWith(a)
   }
 
-  it should "throw NoSuchElementException if an empty stack is popped" in {
-    val emptyStack = new Stack[Int]
-    a[NoSuchElementException] should be thrownBy {
-      emptyStack.pop()
-    }
+  property("concatenate") = forAll { (a: String, b: String) =>
+    (a+b).length >= a.length && (a+b).length >= b.length
+  }
+
+  property("substring") = forAll { (a: String, b: String, c: String) =>
+    (a+b+c).substring(a.length, a.length+b.length) == b
   }
 
 }
